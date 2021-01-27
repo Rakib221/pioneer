@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pioneer Bank</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="pioneer.css">
+</head>
+<body class="p-5">
+   <div id="login-area">
+    <h1 class="text-center">Welcome to Pioneer Bank</h1>
+    <div class="card p-3 mb-5 bg-white rounded mt-5 card-mdn">
+        <form class="p-5">
+            <div id="emailHelp" class="form-text mb-3 fw-bold">Login-Here</div>
+            <div class="mb-3">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail">
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password">
+            </div>
+          </form>
+          <button id="login" type="submit" class="btn btn-primary">Enter</button>
+      </div>
+   </div>
+      <div  style="display: none;" id="transaction-area">
+        <div class="text-center" >
+          <h1>Transaction-Area</h1>
+          <div class="row mt-5">
+             <div class="col-md-4">
+               <div class="px-5 bg-primary p-5 rounded text-white">
+                 <h5>Deposit</h5>
+                 <h2>$ <span id="currentDeposite">00</span></h2>
+               </div>
+             </div>
+
+             <div class="col-md-4">
+               <div class="px-5 bg-success p-5 rounded text-white">
+                 <h5>Withdraw</h5>
+                 <h2>$ <span id="withDrawCurrent">00</span></h2>
+               </div>
+             </div>
+
+             <div class="col-md-4">
+               <div class="px-5 bg-warning p-5 rounded text-white">
+                 <h5>Balance</h5>
+                 <h2>$ <span id="currentBalance">00</span></h2>
+               </div>
+             </div>
+          </div>
+     </div>
+     <div class="row">
+       <div class="col-md-6">
+         <div>
+           <div class="card p-3 mb-5 bg-white rounded mt-5 card-mdn">
+               <form class="p-5">
+                 <h4 class="form-text mb-3 fw-bold">Deposit</h4>
+                   <div class="mb-3">
+                     <input id="depositeValue" type="text" class="form-control">
+                   </div>
+                   
+                 </form>
+                 <button id="depositeButton" type="submit" class="btn btn-primary">Deposit</button>
+             </div>
+          </div>
+       </div>
+       <div class="col-md-6">
+         <div>
+           <div class="card p-3 mb-5 bg-white rounded mt-5 card-mdn">
+               <form class="p-5">
+                 <h4 class="form-text mb-3 fw-bold">Withdraw</h4>
+                   <div class="mb-3">
+                     <input id="withDrawValue" type="text" class="form-control">
+                   </div>
+                   
+                 </form>
+                 <button id="withDrawButton" type="submit" class="btn btn-primary">Withdraw</button>
+             </div>
+          </div>
+       </div>
+     </div>
+      </div>
+      <script>
+        // login button event handler
+          const loginBtn = document.getElementById("login");
+          loginBtn.addEventListener("click",function(){
+            const loginArea = document.getElementById("login-area");
+            loginArea.style.display= "none";
+            const transactionArea = getElementById("transaction-area");
+            transactionArea.style.display = "block";
+          })
+
+          // deposite button event handler
+          const depositeBtn = document.getElementById("depositeButton");
+          depositeBtn.addEventListener("click",function(){
+             const depositeNumber = document.getElementById("depositeValue").value;
+             const depositeAmount = parseFloat(depositeNumber);
+             updateText("currentDeposite",depositeAmount);
+             updateText("currentBalance",depositeAmount);
+             document.getElementById("depositeValue").value = "";
+          })
+
+          function updateText(id,depositeAmount){
+             const current = document.getElementById(id).innerText;
+             const currentNumber = parseFloat(current);
+             const totalAmount = depositeAmount + currentNumber;
+             document.getElementById("currentDeposite").innerText = totalAmount;
+          }
+
+          // withdraw button event handler
+
+          const withdrawBtn = document.getElementById("withDrawButton");
+          withdrawBtn.addEventListener("click",function(){
+            const withDrawAmount = getElementById("withDrawValue").value;
+            const withDrawGivenValue = parseFloat(withDrawAmount);
+            updateWithDrawAndBalane("withDrawCurrent",withDrawGivenValue);
+            updateBalane("currentBalance",withDrawGivenValue)
+          })
+
+          function updateWithDrawAndBalane(id,withDrawGivenValue){
+             const Wdcurrent = document.getElementById(id).innerText;
+             const WdcurrentNumber = parseFloat(Wdcurrent);
+             const upadateAmount = withDrawGivenValue + WdcurrentNumber;
+             document.getElementById("withDrawCurrent").innerText = upadateAmount;
+          }
+
+          function updateBalane(id,withDrawGivenValue){
+             const balanceCurrent = document.getElementById(id).innerText;
+             const balancecurrentNumber = parseFloat(Wdcurrent);
+             const upadateBalanceAmount = withDrawGivenValue;
+             document.getElementById("currentBalance").innerText = upadateAmount;
+          }
+      </script>
+</body>
+</html>
